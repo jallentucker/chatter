@@ -9,6 +9,12 @@ var compression = require('compression');
 var favicon = require('serve-favicon');
 var config = require('./config');
 
+// var admit = require('admit-one')('bookshelf', {
+//   bookshelf: {
+//     modelClass: User
+//   }
+// });
+
 var app = express();
 var config = require('./config');
 
@@ -37,3 +43,4 @@ if (require.main === module) {
     return console.log('Express server listening on port %d in %s mode', config.port, app.get('env'));
   });
 }
+
