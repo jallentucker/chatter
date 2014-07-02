@@ -15,6 +15,7 @@
     "app/bower_components/bootstrap-sass/js/carousel.js",
     "app/bower_components/bootstrap-sass/js/scrollspy.js",
     "app/bower_components/bootstrap-sass/js/collapse.js",
-    "app/bower_components/bootstrap-sass/js/tab.js"
+    "app/bower_components/bootstrap-sass/js/tab.js",
+    "app/bower_components/admit-one-ember/dist/admit-one-ember.js"
   ]
 }
