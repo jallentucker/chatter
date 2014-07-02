@@ -1,7 +1,8 @@
 'use strict';
 
 window.Chatter = Ember.Application.create();
-Ember.AdmitOne.setup();
+Chatter.AdmitOneContainers = {}; // overridable by tests
+Ember.AdmitOne.setup({ containers: Chatter.AdmitOneContainers });
 
 Chatter.Router.map(function() {
   this.route('signup');
