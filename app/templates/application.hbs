@@ -2,9 +2,9 @@
   <h1>Chatter</h1>
   {{#if session.isAuthenticated }}
   	<form {{action 'post' on='submit'}}>
-	  	{{input class= "postBox" type="post" required="true" autofocus="true" placeholder="Create a post." value=post}}
-	  	<br><button name="submit" type="submit"> Save your post. </button>
-	  	{{#if error}}<div>Error: {{error}}.</div>{{/if}}
+	  	{{input class= "postBox" type="post" required="true" autofocus="true" placeholder="Create a post." value=content}}
+	  	<br><button name="submit" type="submit">Save your post.</button>
+      {{#if error}}<div>Error: {{error}}.</div>{{/if}}
   	</form>
   	{{#link-to 'logout'}}Logout{{/link-to}}
 	{{else}}

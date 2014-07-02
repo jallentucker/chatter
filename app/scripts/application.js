@@ -9,6 +9,7 @@ Chatter.Router.map(function() {
   this.route('login');
   this.route('logout');
   this.route('profile');
+  this.route('chirps');
 });
 
 Chatter.ApplicationAdapter = DS.RESTAdapter.extend({
@@ -22,6 +23,11 @@ Chatter.ProfileRoute = Ember.Route.extend(Ember.AdmitOne.AuthenticatedRouteMixin
 Chatter.User = DS.Model.extend({
   username: DS.attr('string'),
   password: DS.attr('string')
+});
+
+Chatter.Chirp = DS.Model.extend({
+  username: DS.attr('string'),
+  content: DS.attr('string')
 });
 
 Chatter.LoginRoute = Ember.Route.extend({
@@ -95,10 +101,19 @@ Chatter.SignupController = Ember.ObjectController.extend({
   }
 });
 
-Chatter.PostController = Ember.ObjectController.extend({
+Chatter.ChirpsRoute = Ember.Route.extend({
+  model: function() {
+    return this.store.find('chirp');
+  }
+});
+
+Chatter.ApplicationController = Ember.ObjectController.extend({
   actions: {
     post: function() {
-
+      var self = this;
+      this.store.createRecord('chirp').save().then(function() {
+        self.transitionToRoute('chirps');
+      });
     }
   }
 });
