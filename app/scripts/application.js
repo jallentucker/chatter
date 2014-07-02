@@ -93,3 +93,11 @@ Chatter.SignupController = Ember.ObjectController.extend({
     }
   }
 });
+
+Chatter.PostController = Ember.ObjectController.extend({
+  actions: {
+    post: function() {
+
+    }
+  }
+});
