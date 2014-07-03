@@ -12,7 +12,7 @@ var knexConfig = require('../knexfile')[config.env];
 var knex = require('knex')(knexConfig);
 var bookshelf = require('bookshelf')(knex);
 
-var User, Token;
+var User, Token, Chirp;
 User = bookshelf.Model.extend({
   tokens: function() {
     return this.hasMany(Token);
@@ -24,6 +24,9 @@ Token = bookshelf.Model.extend({
     return this.belongsTo(User);
   },
   tableName: 'tokens'
+});
+Chirp = bookshelf.Model.extend({
+  tableName: 'chirps'
 });
 
 var admit = require('admit-one')('bookshelf', {
@@ -70,20 +73,10 @@ api.post('/chirps', function(req, res) {
 });
 
 api.get('/chirps', function(req, res) {
-  res.json({
-    'chirps': [{
-      'id': 1,
-      'username': 'josh',
-      'content': 'hi'
-    }, {
-      'id': 2,
-      'username': 'carlo',
-      'content': 'is it friday'
-    }, {
-      'id': 3,
-      'username': 'sam',
-      'content': 'no it is thursday'
-    }]
+  Chirp.fetchAll().then(function(collection) {
+    res.json({
+      'chirps': collection.toJSON()
+    });
   });
 });
 
