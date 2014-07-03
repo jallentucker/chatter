@@ -62,7 +62,7 @@ api.get('/chirps', function(req, res) {
     res.json({
       'chirps': collection.toJSON()
     });
-  });
+  }).done();
 });
 
 // all routes defined from here on will require authorization
