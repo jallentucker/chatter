@@ -59,6 +59,34 @@ api.post('/sessions', admit.authenticate, function(req, res) {
   res.json({ status: 'ok' });
 });
 
+api.post('/chirps', function(req, res) {
+  res.json({
+    'chirp': {
+      'id': 1,
+      'username': 'josh',
+      'content': 'hi'
+    }
+  });
+});
+
+api.get('/chirps', function(req, res) {
+  res.json({
+    'chirps': [{
+      'id': 1,
+      'username': 'josh',
+      'content': 'hi'
+    }, {
+      'id': 2,
+      'username': 'carlo',
+      'content': 'is it friday'
+    }, {
+      'id': 3,
+      'username': 'sam',
+      'content': 'no it is thursday'
+    }]
+  });
+});
+
 // all routes defined from here on will require authorization
 api.use(admit.authorize);
 api.delete('/sessions/current', admit.invalidate, function(req, res) {

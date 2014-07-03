@@ -17,11 +17,11 @@ describe('app', function() {
   });
 
   it('will allow user to create a post', function() {
-    this.server.respondWith("POST", "/api/chirps",
-      [200, { "Content-Type": "application/json" },
+    this.server.respondWith('POST', '/api/chirps',
+      [200, { 'Content-Type': 'application/json' },
         JSON.stringify(__fixture('chirp-create'))]);
-    this.server.respondWith("GET", "/api/chirps",
-      [200, { "Content-Type": "application/json" },
+    this.server.respondWith('GET', '/api/chirps',
+      [200, { 'Content-Type': 'application/json' },
         JSON.stringify(__fixture('chirps'))]);
     visit('/');
     // TODO: test to make sure we sent a good request to the server
@@ -33,8 +33,8 @@ describe('app', function() {
   });
 
   it('will allow user to create a post', function() {
-    this.server.respondWith("GET", "/api/chirps",
-      [200, { "Content-Type": "application/json" },
+    this.server.respondWith('GET', '/api/chirps',
+      [200, { 'Content-Type': 'application/json' },
         JSON.stringify(__fixture('chirps'))]);
     visit('/chirps');
     andThen(function() {
