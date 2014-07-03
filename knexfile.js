@@ -12,6 +12,14 @@ module.exports = {
     }
   },
 
+  // NODE_ENV='test' ./node_modules/.bin/knex migrate:latest
+  test: {
+    client: 'postgres',
+    connection: {
+      database : 'chatter_test'
+    }
+  },
+
   staging: {
     client: 'postgresql',
     connection: {
