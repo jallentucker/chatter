@@ -29,7 +29,13 @@ var requestFixture = function(fixture) {
   return requestAsync(requestOptions);
 };
 
-
+var omitID = function(target) {
+  return {
+    chirps: target.chirps.map(function(chirp) {
+      return _.omit(chirp, 'id');
+    }) 
+  };
+};
 
 describe('server', function() {
   before(function(done) { this.server = app.listen(port, function() { done(); }); });
@@ -62,17 +68,7 @@ describe('server', function() {
     })
     .spread(function(response, body) {
       var json = JSON.parse(body);
-      var jsonOmit = {
-        chirps: json.chirps.map(function(chirp) {
-          return _.omit(chirp, 'id');
-        })
-      };
-      var jsonFixtureOmit = {
-        chirps: fixture.response.json.chirps.map(function(chirp) {
-          return _.omit(chirp, 'id');
-        })
-      };
-      expect(jsonOmit).to.eql(jsonFixtureOmit);
+      expect(omitID(json)).to.eql(omitID(fixture.response.json));
     })
     .done(function() { done(); }, done);
   });
