@@ -32,7 +32,7 @@ describe('app', function() {
     });
   });
 
-  it('will allow user to create a post', function() {
+  it('will allow user to see posts', function() {
     this.server.respondWith('GET', '/api/chirps',
       [200, { 'Content-Type': 'application/json' },
         JSON.stringify(__fixture('chirps'))]);
